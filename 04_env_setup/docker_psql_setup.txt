@@ -1,0 +1,56 @@
+Installed: Docker, PostgreSQL & Psql
+
+# Docker
+
+>> docker compose up -d
+
+LIST
+>> docker compose ls
+NAME                  STATUS              CONFIG FILES
+byte_of_py2_the_sql   running(3)          /Users/thenickedwards/Desktop/Repos/Nucamp ONPA-SU24-10-02/byte_of_py2_the_sql/docker-compose.yml
+
+PROCESS STATUS
+>> docker compose ps
+NAME                IMAGE                      COMMAND                  SERVICE     CREATED         STATUS         PORTS
+flask_container     nupgsql/flask:latest       "tail -f /dev/null"      flask-app   5 minutes ago   Up 2 minutes   0.0.0.0:3000->3000/tcp
+pg_container        postgres:14.1-alpine3.15   "docker-entrypoint.s…"   pg          5 minutes ago   Up 2 minutes   0.0.0.0:5432->5432/tcp
+pgadmin_container   dpage/pgadmin4:6.4         "/entrypoint.sh"         pgadmin     5 minutes ago   Up 2 minutes   80/tcp, 443/tcp, 0.0.0.0:5433->5433/tcp
+
+TEST ⤵
+>> docker exec pg_container psql -c 'SELECT COUNT(*) FROM pg_database'
+output:
+ count 
+-------
+     9
+(1 row)
+
+TO QUIT
+>> docker compose stop
+
+TO RESTART (ALL CONTAINERS)
+>> docker compose start
+
+REMOVE [DELETE] CONTAINERS
+>> docker compose down
+
+>> docker exec -it pg_container psql -U postgres
+
+# PostgreSQL 
+
+HELP
+postgres=#  \?
+
+LIST DATABASES
+postgres=#  \l
+
+CONNECT TO DATABASE
+postgres=# \c <database_name>
+
+LIST TABLES
+postgres=#  \dt
+
+DESCRIBE TABLE
+postgres=#  \d <table_name>
+
+QUIT
+postgres=#  \q
