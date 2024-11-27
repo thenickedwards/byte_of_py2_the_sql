@@ -1,0 +1,25 @@
+-- TABLES
+-- -- Composed of rows and columns.
+-- -- (Attributes are generally analogous to columns)
+-- -- (Relationships often involve references between tables)
+-- -- Tables rows are known as a Record
+
+-- Primary Key
+-- -- One or more columns/attributes with a unique value for each row.
+-- -- A key composed of a tuple of multiple attributes is called a composite primary key, and the tuple must be unique for each row.
+-- -- Non-nullable
+-- -- (id often used, sometimes sequential integer, or UUID)
+-- -- Values should be constant
+-- -- Flexible and maintainable
+-- -- Reliable way to look up records
+-- -- Bold on ERD
+
+-- Foreign Key
+-- -- References primary key of another table
+-- -- Each relationship has different requirements
+-- -- -- One-to-one
+-- -- -- --  Requires a unique, non-nullable foreign key on one table
+-- -- -- One-to-many (or Many-to-one)
+-- -- -- --  Requires a foreign key column on the “many” table
+-- -- -- Many-to-many
+-- -- -- --  Requires an intermediate table of unique non-nullable foreign key pairs to reference each table
