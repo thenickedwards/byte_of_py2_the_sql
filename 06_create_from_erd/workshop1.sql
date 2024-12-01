@@ -64,14 +64,6 @@ CREATE TABLE customers (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE employees (
-    id SERIAL,
-    first_name TEXT NOT NULL,
-    last_name TEXT NOT NULL,
-    reports_to INT,
-    PRIMARY KEY (id)
-);
-
 CREATE TABLE orders (
     id SERIAL,
     date DATE,
@@ -80,24 +72,18 @@ CREATE TABLE orders (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE orders_products (
-    product_id INT,
-    order_id INT,
-    quantity INT,
-    unit_discount NUMERIC NOT NULL,
-    PRIMARY KEY (product_id, order_id)
+CREATE TABLE employees (
+    id SERIAL,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    reports_to INT,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE territories (
     id SERIAL,
     description TEXT NOT NULL,
     PRIMARY KEY (id)
-);
-
-CREATE TABLE employees_territories (
-    employee_id INT,
-    territory_id INT,
-    PRIMARY KEY (employee_id, territory_id)
 );
 
 CREATE TABLE offices (
@@ -114,6 +100,22 @@ CREATE TABLE us_states (
     PRIMARY KEY (id)
 );
 
+--- CREATE bridge tables
+
+CREATE TABLE orders_products (
+    product_id INT,
+    order_id INT,
+    quantity INT,
+    unit_discount NUMERIC NOT NULL,
+    PRIMARY KEY (product_id, order_id)
+);
+
+CREATE TABLE employees_territories (
+    employee_id INT,
+    territory_id INT,
+    PRIMARY KEY (employee_id, territory_id)
+);
+
 ---
 -- ALTER TABLE, ADD FOREGIN KEYS
 ---
@@ -126,16 +128,16 @@ ALTER TABLE orders
 ADD CONSTRAINT fk_orders_customers FOREIGN KEY (customer_id) REFERENCES customers (id),
 ADD CONSTRAINT fk_orders_employees FOREIGN KEY (employee_id) REFERENCES employees (id);
 
+ALTER TABLE employees
+ADD CONSTRAINT fk_employees_employees FOREIGN KEY (reports_to) REFERENCES employees (id);
+
 ALTER TABLE orders_products
 ADD CONSTRAINT fk_orders_products_orders FOREIGN KEY (order_id) REFERENCES orders (id),
 ADD CONSTRAINT fk_orders_products_products FOREIGN KEY (product_id) REFERENCES products (id);
 
-ALTER TABLE employees_territories
-ADD CONSTRAINT fk_employees_territories_employees FOREIGN KEY (employee_id) REFERENCES employees (id),
-ADD CONSTRAINT fk_employees_territories_territories FOREIGN KEY (territory_id) REFERENCES territories (id);
-
 ALTER TABLE offices
 ADD CONSTRAINT fk_offices_territories FOREIGN KEY (territory_id) REFERENCES territories (id);
 
-ALTER TABLE employees
-ADD CONSTRAINT fk_employees_employees FOREIGN KEY (reports_to) REFERENCES employees (id);
+ALTER TABLE employees_territories
+ADD CONSTRAINT fk_employees_territories_employees FOREIGN KEY (employee_id) REFERENCES employees (id),
+ADD CONSTRAINT fk_employees_territories_territories FOREIGN KEY (territory_id) REFERENCES territories (id);
