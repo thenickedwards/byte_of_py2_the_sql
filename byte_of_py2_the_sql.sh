@@ -1,9 +1,11 @@
 #!/bin/bash
+# Note: the commands to start below will source script in current shell (instead of executing in a subshell), 
+# this allows environment changes (like activating the virtual environment) topersist
+
 # >> source ./byte_of_py2_the_sql.sh start
 # OR      
 # >> . ./byte_of_py2_the_sql.sh start
-    # Sources script in current shell (instead of executing in a subshell, 
-    # so that environment changes (like activating the virtual environment) will persist
+    
 
 # Load environment variables
 source .env 
