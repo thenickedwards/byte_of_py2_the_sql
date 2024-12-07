@@ -95,8 +95,8 @@ CREATE TABLE offices (
 
 CREATE TABLE us_states (
     id SERIAL,
-    name TEXT NOT NULL,
-    abbreviation CHARACTER(2) NOT NULL,
+    name TEXT UNIQUE NOT NULL,
+    abbreviation UNIQUE CHARACTER(2) NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -141,3 +141,4 @@ ADD CONSTRAINT fk_offices_territories FOREIGN KEY (territory_id) REFERENCES terr
 ALTER TABLE employees_territories
 ADD CONSTRAINT fk_employees_territories_employees FOREIGN KEY (employee_id) REFERENCES employees (id),
 ADD CONSTRAINT fk_employees_territories_territories FOREIGN KEY (territory_id) REFERENCES territories (id);
+
