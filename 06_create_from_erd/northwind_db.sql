@@ -142,3 +142,9 @@ ALTER TABLE employees_territories
 ADD CONSTRAINT fk_employees_territories_employees FOREIGN KEY (employee_id) REFERENCES employees (id),
 ADD CONSTRAINT fk_employees_territories_territories FOREIGN KEY (territory_id) REFERENCES territories (id);
 
+-- FEEDBACK
+-- TODO: a missing unique constraint on the quantity attribute in the orders_products entity, 
+-- TODO: a missing unique constraint on the territory_id attribute in the offices entity, 
+-- DONE: and missing unique constraints on the name and abbreviation attributes in the us_states entity.
+-- TODO: best practices for FKs formatting
+-- I like your style for adding the foreign keys, not sure I've ever seen it formatted that way, pretty neat. 

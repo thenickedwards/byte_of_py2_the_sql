@@ -1,15 +1,11 @@
 -- Part 4: Mutations
-
 -- Management has decided it would like to designate employees as experts of 
 -- zero or more categories, and they want the database to keep track of who is
 -- an expert in what. 
 -- Q: How will you satisfy this new requirement? 
--- A:
+    -- A: Initially I was thinking of creating a new employees_smes table that tracks the relationship between employees and subject matter. Though, on second thought that's a bit cumber some (to manage antoher table in the db). Instead I would create a new column, particularly if this is a document-based database where I could store a list/array.
 -- Q: What type of relationship is this? (e.g. 1-1, 1-many, or many-to-many?)
--- A: 
--- Fill in your answer above. 
-
-
+    -- A: 1-many (employee - subject_matter)
 
 -- 4.1: Create table
 -- Write a SQL statement that creates a new table meeting the following criteria:
@@ -17,12 +13,14 @@
 --   2. It has a employee_id column of type INTEGER
 --   3. It has a category_id column of type INTEGER
 --   4. Its primary key is a tuple of (employee_id, category_id) pairs
---
 -- Test your answer by running it in pgAdmin or psql. Afterward, verify
 -- that the employees_categories has been created with the expected columns
 -- and primary key. Place your answer in the blank space below. 
-
-
+CREATE TABLE employees_categories (
+	employee_id INT,
+	category_id INT,
+	PRIMARY KEY (employee_id, category_id)
+);
 
 -- 4.2: Alter table
 -- Write ALTER TABLE statement on the employees_categories table. Use it to add
@@ -30,22 +28,19 @@
 -- employees table. Name the constraint fk_ec_employees.
 -- For the foreign key column, use employee_id from the employees_categories 
 -- table. It should reference the primary key of the employees table.
---
 -- Test your answer in pgAdmin or psql and verify that it worked correctly, then
 -- place it in the blank space below.
-
-
-
 -- 4.3: Alter table
 -- Write an ALTER TABLE statement on the employees_categories table. Use it to add
 -- a foreign key constraint that creates a relationship between it and the categories
 -- table. Name the constraint fk_ec_categories.
 -- For the foreign key column, use category_id from the employees_categories table.
 -- It should reference the primary key of the categories table. 
---
 -- Test your answer in pgAdmin or psql and verify that it worked correctly, then
 -- place it in the blank space below.
-
+ALTER TABLE employees_categories
+ADD CONSTRAINT fk_ec_employees FOREIGN KEY (employee_id) REFERENCES employees (id),
+ADD CONSTRAINT fk_ec_categories FOREIGN KEY (category_id) REFERENCES categories (id);
 
 
 -- 4.4: Insert records
@@ -55,8 +50,8 @@
 --
 -- Test your answer in pgAdmin or psql and verify that it worked correctly, then
 -- place it in the blank space below.
-
-
+INSERT INTO employees_categories (employee_id, category_id) VALUES
+(1,2), (3,4), (4,3), (4,4), (8,2), (1,8), (1,3), (1,6);
 
 -- 4.5: Remove records
 -- Write a statement that deletes all records from employees_categories but does not 
@@ -66,7 +61,7 @@
 -- 
 -- Test your answer in pgAdmin or psql and verify that it worked correctly, then
 -- place it in the blank space below.
-
+DELETE FROM employees_categories WHERE 1 = 1;
 
 
 -- Bonus Task (optional)
