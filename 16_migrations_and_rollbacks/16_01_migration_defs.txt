@@ -1,0 +1,15 @@
+DATABASE MIGRATIONS & ROLLBACKS
+1) Schema Migrations
+    - Create/delete table, column, constraint
+    - Alter property of column (name, datatype, etc)
+    - Rename table, column, constraint, etc
+    - Any changes to ERD
+2) Data Migration
+    - Transform existing data values
+    - May support new business requirements
+    - May allow for compatibility with other database systems
+
+* Best Practices *
+    - Incremental
+    - Reversible
+    - Programmatic (in forward and reverse)

@@ -1,0 +1,21 @@
+Python Packages and Virtual Environments
+
+VENV
+https://docs.python.org/3/library/venv.html
+>> python -m venv /path/to/new/virtual/environment
+>> python -m venv venv_name
+>> source venv_name/bin/activate
+
+>> python -m venv flask_byte_of_py2
+
+TO DELETE VENV
+[deactiveate first]
+>> rm -r venv
+>> sudo rm -rf virtual_environment_name
+# If you are using, virtualenvwrapper:
+>> rmvirtualenv <virtual-environment-name>
+
+PIP
+pip install -r requirements.txt
+>> pip list
+>> pip show package_name
