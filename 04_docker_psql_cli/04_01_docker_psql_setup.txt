@@ -33,6 +33,7 @@ TO RESTART (ALL CONTAINERS)
 REMOVE [DELETE] CONTAINERS
 >> docker compose down
 
+CONNECT DOCKER TO POSTGRES
 >> docker exec -it pg_container psql -U postgres
 
 # PostgreSQL 

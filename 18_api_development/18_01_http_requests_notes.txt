@@ -1,0 +1,60 @@
+# APIs (Application Programming Interface)
+
+## Client-Server Architecture
+Client 🧑‍💻     →→→     Server 🍦
+
+Three-Tier Architecture
+User Client 🤳     →→→     Web Server/ Database Client 📦      →→→     Database Server 💽
+
+URLs = Uniform Resource Locator
+
+e.g. https://www.google.com/search?q=waffles
+⏺ http or https
+    - specifies how to transmit data
+    - HTTP = HyperText Transfer Protocol (usually port 80)
+    - HTTPS = HyperText Transfer Protocol Secure (usually port 443)
+⏺ www.google.com - domain name
+    - specifies  location of server
+    - alias for IP address
+⏺ /search - path
+    - Specifies requested resource
+⏺ ?q=waffles - query parameter
+    - Specifies query parameters as key-value pairs
+    - { q: waffles }
+    - Multiple parameters joined with & symbol
+    - Unused parameters typically ignored
+⏺ Query parameter encoding (AKA percent encoding, cf urllib Python pkg)
+    - e.g. space, newline, @
+    - space = %20
+    - @ = %40
+    - # = %23
+    - $ = %24
+    - / = %2F
+    - & = %26
+
+Postgres Connection String
+postgresql://postgres@localhost:5432/week3
+⏺ Scheme: postgresql
+⏺ username: postgres
+⏺ domain name: localhost
+⏺ port: 5432
+⏺ path: week3
+
+HTTP Requests - Made up of request method (below), request body, and request headers (i.e. metadata)
+GET     - Fetch a resource
+POST     - Create a resource
+PUT     - Replace resource with edits (May create new resource if one doesn’t exist)
+PATCH     - Modifies existing resource
+DELETE     - Delete resource
+Less used options: HEAD, OPTIONS, TRACE, CONNECT
+
+HTTP Responses - Made up of response body, and response header, (i.e. metadata), status codes
+100-199     - Informational
+200-299     - Successful
+300-399     - Redireection
+400-499     - Client Error
+500-599     - Serrver Error
+
+REST - REpresentational State Transfer
+
+
