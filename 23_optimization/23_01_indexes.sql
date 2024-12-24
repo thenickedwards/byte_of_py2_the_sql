@@ -8,6 +8,7 @@ SELECT * FROM pg_indexes;   -- 119 indexes
 SELECT tablename, indexname, indexdef FROM pg_indexes WHERE tablename NOT LIKE 'pg_%';
 
 -- Index vs Non-Indexed comparison
+-- Without index
 SELECT title FROM moma_works WHERE artist = 'Frank Lloyd Wright';
 -- Successfully run. Total query runtime: 436 msec. 874 rows affected.
 

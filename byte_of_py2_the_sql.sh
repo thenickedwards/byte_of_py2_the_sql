@@ -24,7 +24,6 @@ if [ "$action" = "start" ]; then
     docker-compose up -d
     echo "Docker containers started."
     echo "Opening pgAdmin at http://localhost:5433/"
-    sleep 5
     open http://localhost:5433/
 # Otherwise, assume the action is "stop"
 else

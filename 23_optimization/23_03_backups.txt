@@ -1,0 +1,40 @@
+>> docker exec pg_container pg_dump --help
+
+>> docker exec pg_container pg_dump --verbose --file moma_dump.sql moma
+// FILE CREATED IN pg_container
+
+>> docker exec pg_container ls
+
+// SEE FRIST 100 ROWS
+>> docker exec pg_container head -n 100 moma_dump.sql
+
+// INSPECT THIS FILE LOCALLY
+>> docker cp pg_container:moma_dump.sql data
+
+// RESTORE BACKUP
+>> docker exec pg_container psql -c 'CREATE DATABASE moma_copy;'
+>> docker exec pg_container psql moma_copy -f moma_dump.sql
+// VERIFY 
+>> docker exec -it pg_container psql
+>> postgres=# \l
+                                 List of databases
+   Name    |  Owner   | Encoding |  Collate   |   Ctype    |   Access privileges   
+-----------+----------+----------+------------+------------+-----------------------
+ moma      | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+ moma_copy | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+ northwind | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+ postgres  | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+ template0 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+           |          |          |            |            | postgres=CTc/postgres
+ template1 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+           |          |          |            |            | postgres=CTc/postgres
+ twitter   | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+ week1     | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+ week2     | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+ week3     | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+ week4     | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+(11 rows)
+
+>> \c moma_copy
+>> \dt
+>> \q
