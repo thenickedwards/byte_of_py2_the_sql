@@ -8,9 +8,9 @@ This is a repo where I have committed to practicing Python while integrating wit
 
 To spin up the environment, you'll need a docker-compose.yml at the root and a .env file with the name of your virtual environment and the path to activate it. Then simply run:
 
-`source ./byte_of_py2_the_sql.sh start`
+`source ./start-byte_of_py2_the_sql.sh start`
 OR
-`. ./byte_of_py2_the_sql.sh start`
+`. ./start-byte_of_py2_the_sql.sh start`
 
 This will activate the virtual environment, compose up the Docker containers, and open pgAdmin at http://localhost:5433/ in a browser.
 
